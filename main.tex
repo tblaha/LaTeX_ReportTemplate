@@ -1,0 +1,104 @@
+% include all the parameters
+\input{aa_layout/parameters}
+
+% Class-definition
+\documentclass{e2ereport}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%% Begin of Document %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document} 
+
+
+%%%%%%%%%%%%%%
+% Title page %
+%%%%%%%%%%%%%%
+\formatfortitlepage
+\pagenumbering{roman}
+
+\input{aa_layout/titlepage}
+
+
+%%%%%%%%%%%%%%%
+% Frontmatter % 
+%%%%%%%%%%%%%%%
+\switchtoonecolumn
+
+% preface
+\formatforpreface
+\makepreface{\chpath/\prefacefile}
+
+% summary
+\formatforfrontmatter
+\makesummary{\chpath/\summaryfile}
+
+% toc
+\tableofcontents
+
+% nomenclature
+\vspace{5mm}
+\begingroup
+    \let\clearpage\relax
+    \printnomencl
+\endgroup
+
+\input{\listspath/\nomenclaturefile}
+\clearpage
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ACTUAL Chapters START HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\formatforchapters
+\pagenumbering{arabic}
+
+%\switchtotwocolumns
+
+\input{\chpath /ExampleChapter.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ACTUAL Chapters END HERE %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%
+% Bibliography %
+%%%%%%%%%%%%%%%%
+%% cleardoublepage makes the appendix start on a right-hand page -- make it \clearpage if that is not desired
+\cleardoublepage
+ 
+\formatforbib
+
+\switchtoonecolumn
+
+\vspace{10mm}
+\begingroup
+    \let\clearpage\relax
+    \printbibliography[title=\bibliographyheading]
+\endgroup
+
+
+%%%%%%%%%%%%%%
+% Appendices %
+%%%%%%%%%%%%%%
+%% cleardoublepage makes the appendix start on a right-hand page -- make it \clearpage if that is not desired
+\cleardoublepage 
+
+\formatforappendix
+%% formatting workaround -- dont touch, it is beun
+\makeatletter%
+    \pretocmd{\chapter}{\addtocontents{toc}{\protect\addvspace{-8\p@}}}{}{}%
+\makeatother%
+%% formatting workaround -- dont touch, it is beun
+
+\pagenumbering{Roman}
+
+\input{\chpath /zz_appendices.tex}
+
+
+\end{document}

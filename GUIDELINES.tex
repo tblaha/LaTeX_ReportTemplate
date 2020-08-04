@@ -1,0 +1,140 @@
+
+
+
+
+
+
+|------------------|
+|  General Things  |
+|------------------|
+
+- Do not use contracted works like don't or can't. $_Always_$ spell them out like cannot, would not, does not, it is and so forth
+
+
+- You can now use \Warn{SOME TEXT} to generate an orange compiler warning. This makes sense if you want to make a note about something that has to be done, like \Warn{MAKE THIS TABLE HERE}. It is better than writing it as a comment % like this
+or just into the file IN CAPITALS LIKE THIS, because we will always have a complete and click-able overview of the this to be done in the "logs and warnings" tab (next to the Recompile button). Comments and capitals can be and have been overlooked.
+
+
+---- Equations:
+
+- use \mathrm{} for all text in equations, such as in subscripts or units $F_{\mathrm{reaction}} = 213.2 \ \mathrm{N}$. Don't forget the space ($ \ $) before the unit.
+
+
+- use the math mode like $100 \ \mathrm{attoparsec/microfortnight}$ in plain text for every value you give or formula sign that you reference, even if it is just $x$.
+
+
+
+---- Figures and Tables:
+
+- _always_ copy a fresh template from the examples.tex for a new table of figure instead of copying one from the report or previous reports.
+
+
+
+---- Sectioning:
+
+- do not write uninterrupted (by headings, figures, tables...) text longer than 20 lines.
+
+
+- do not write pars (continuous stream of text without line breaks) longer than 10 lines. Use an empty line in the LaTeX code like 
+
+this between these pars. A line break in the code, like
+this, does nothing.
+
+
+- if you have a couple of sentences (like 10-25 lines) and want to give them a topic "headline" to ease readability, use \paragraph{Light Fandango}. Do not use things like \subsubsection*{Cart Wheels}.
+
+
+- consider using \subsubsection{Whiter Shade of Pale} if you are inside a subsection and have multiple paragraphs longer than 20 lines
+
+
+- "Capitalize the Important Words in any Titles of any Sections"
+
+
+- "Only capitalize the first word in paragraph titles"
+
+
+- "Keep Titles Short" (not like the ones above....)
+
+
+
+
+
+
+|---------------|
+|  Referencing  |
+|---------------|
+
+---- Labels:
+
+- Make labels meaningful and a tag describing what kind of label it is (equation, figure, section...). Do not use spaces or special characters (other than underscore) in labels, it can mess up some internal LaTeX things.
+
+example: If you want to create a label for a table on propellant data, you can use this: \label{tab:prop_data}
+
+
+- Here is a full list of the tags to begin labels with:
+
+ch:   --- chapter
+sec:  --- sections (and subsection)
+tab:  --- table
+fig:  --- figure
+eq:   --- equation
+
+
+
+---- Cross referencing:
+
+- Manually put things like "section" or "sections" in front of \ref{sec:label}, I have not set up LaTeX to do stuff like that itself. Always do that because optically you cannot distinguish a section from an equation number.
+
+
+- Do not use "Subsection" (it is not really a word), use "Section".
+
+
+
+
+
+
+|----------|
+|  Citing  |
+|----------|
+
+---- bibliography.bib file:
+
+
+General Remarks:
+
+- !!! Always search for an already existing entry of the thing you want to reference first (Ctrl+F) !!! I've seen a lot of duplicates
+
+
+- Also, make the identifier of the entry (the string that you use to cite it in-text) meaningful, maybe more meaningful than things like "nasaa" or the like.
+
+
+- If you do not know a field (like year), just leave the entire line out, no year="-" or author="unknown" or the like.
+
+
+- End all lines BUT THE LAST LINE of an entry with a comma "," 
+
+
+Author formatting:
+
+- The BibLaTeX package is relatively smart and configurable in terms of these things. Always use all the full names and titles of all authors in their natural order, separated by "and". Example:
+
+"John D. Anderson and Prof. Jacco Hoekstra and Dr. Lonnie Smith and Jimi Hendrix and James Brown and Bill Withers"
+
+
+- Company names: If you only know the company name put it in curly brackets like this: "{The Hammond Organ Company}"
+
+
+- Avoid the @misc category. For example, if you find a pdf online that is actually a book, use the @book class
+
+
+
+---- cite: !!! THIS HAS CHANGED !!!
+
+- From now on, use \autocite{} after a sentence (AND _AFTER_ THE FULL STOP ".") for getting just the number of a citation like "[27]". Use \textcite if you embed the cite into the sentence for getting something like "Hendrix, Morrison et al. [27]". Example:
+
+"Excessive use of drugs and alcohol frequently lead to artists death as described in \textcite{hendrix70}"
+--> this produces --> "Excessive use of drugs and alcohol frequently lead to artists death as described in Hendrix, Morrison et al. [27]"
+
+
+- Whenever applicable, use page numbers of section number like this: \autocite[p.42-70]{hendrix70} of \textcite[Section "3rd Stone From The Sun"]{hendrix70}
+
